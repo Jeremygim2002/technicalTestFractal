@@ -1,7 +1,7 @@
 import cors from 'cors';
 
 const ACCEPTED_ORIGINS = new Set([
-    'http://localhost:5000',
+    'http://localhost:5174',
     'http://localhost:5173'
 ]);
 

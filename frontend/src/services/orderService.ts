@@ -4,12 +4,28 @@ import type { Order, CreateOrderDto, UpdateOrderDto } from '@/types/order';
 export const orderService = {
     getAll: async () => {
         const { data } = await api.get<Order[]>('/orders');
-        return data;
+        return data.map((o) => ({
+            ...o,
+            finalPrice: Number(o.finalPrice),
+            orderProducts: o.orderProducts.map((op) => ({
+                ...op,
+                totalPrice: Number(op.totalPrice),
+                product: { ...op.product, unitPrice: Number(op.product.unitPrice) },
+            })),
+        }));
     },
 
     getById: async (id: number) => {
         const { data } = await api.get<Order>(`/orders/${id}`);
-        return data;
+        return {
+            ...data,
+            finalPrice: Number(data.finalPrice),
+            orderProducts: data.orderProducts.map((op) => ({
+                ...op,
+                totalPrice: Number(op.totalPrice),
+                product: { ...op.product, unitPrice: Number(op.product.unitPrice) },
+            })),
+        };
     },
 
     create: async (order: CreateOrderDto) => {
