@@ -1,7 +1,7 @@
 # Sistema de Gestión de Productos y Órdenes
 
 ## 🚀 Demo en Vivo
-**[Ver Demo del Proyecto](https://fronted-silk-nu.vercel.app/)**
+**[Ver Demo del Proyecto](https://technical-test-fractal.vercel.app/)**
 
 - **Frontend**: Desplegado en Vercel
 - **Backend**: Desplegado en DigitalOcean App Platform
