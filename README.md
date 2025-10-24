@@ -1,5 +1,14 @@
 # Sistema de Gestión de Productos y Órdenes
 
+## 🚀 Demo en Vivo
+**[Ver Demo del Proyecto](https://fronted-silk-nu.vercel.app/)**
+
+- **Frontend**: Desplegado en Vercel
+- **Backend**: Desplegado en DigitalOcean App Platform
+- **Base de datos**: PostgreSQL en Supabase
+
+---
+
 ## 1. Descripción
 Aplicación full-stack para gestión de productos y órdenes de compra con funcionalidades CRUD completas, validaciones en tiempo real e interfaz moderna.
 
@@ -56,13 +65,17 @@ cd ..
 
 ### Frontend (.env.example en /frontend)
 ```env
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:8080/api
 ```
 
 ### Backend (.env.example en /backend)  
 ```env
-PORT=5000
+PORT=8080
 DATABASE_URL=postgresql://postgres:password@localhost:5432/products_orders_db
+# Para Supabase con pooler (opcional):
+# DIRECT_URL=postgresql://postgres:password@localhost:5432/products_orders_db
+FRONTEND_URL=http://localhost:5174
+NODE_ENV=development
 ```
 
 > **Importante**: Crea estos archivos `.env` antes de ejecutar la aplicación
@@ -77,7 +90,6 @@ npx prisma generate
 
 # Ejecutar migraciones (crea las tablas)
 npx prisma migrate dev
-
 ```
 
 #### 4. 🚀 Ejecutar la aplicación completa
@@ -87,14 +99,14 @@ npx prisma migrate dev
 npm run dev
 
 # Opciones alternativas:
-npm run dev:backend    # Solo backend en puerto 5000
+npm run dev:backend    # Solo backend en puerto 8080
 npm run dev:frontend   # Solo frontend en puerto 5174
 ```
 
 ## 5. Estructura del proyecto
 ```
 techinalTestFractal/
-├── frontend/               # Aplicación React
+├── frontend/               
 │   ├── src/
 │   │   ├── components/     # Componentes UI reutilizables
 │   │   ├── pages/          # Páginas principales
@@ -114,22 +126,18 @@ techinalTestFractal/
 └── README.md               # Este archivo
 ```
 
-## 6. Funcionalidades principales
-
-### Productos
-- Crear, editar y eliminar productos
-- Validación de precios y nombres
-- Listado con búsqueda y filtros
-
-### Órdenes
-- Crear órdenes con múltiples productos
-- Editar cantidades y productos de órdenes existentes
-- Calcular automáticamente totales y precios finales
-- Gestión de estados de órdenes
-- Restricciones para órdenes completadas
 
 
-## 7. Schema de base de datos (SQL genérico)
+## 6. 🌐 Deployment
+---
+### URLs de Producción
+- **Frontend**: `https://fronted-silk-nu.vercel.app/`
+- **API Backend**: Configurado automáticamente via variables de entorno
+- **Conexión**: HTTPS con SSL/TLS habilitado
+
+---
+
+## 8. 📊 Schema de base de datos (SQL genérico)
 
 Si prefieres crear la base de datos manualmente o usar otro ORM, aquí tienes el schema SQL compatible con PostgreSQL/MySQL:
 
