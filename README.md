@@ -67,6 +67,30 @@ DATABASE_URL=postgresql://postgres:password@localhost:5432/products_orders_db
 
 > **Importante**: Crea estos archivos `.env` antes de ejecutar la aplicación
 
+#### 3. 🗃️ Configurar base de datos
+```bash
+# En el directorio /backend
+cd backend
+
+# Generar cliente Prisma
+npx prisma generate
+
+# Ejecutar migraciones (crea las tablas)
+npx prisma migrate dev
+
+```
+
+#### 4. 🚀 Ejecutar la aplicación completa
+```bash
+
+#  Desde la raiz ejecutar frontend y backend simultáneamente
+npm run dev
+
+# Opciones alternativas:
+npm run dev:backend    # Solo backend en puerto 5000
+npm run dev:frontend   # Solo frontend en puerto 5174
+```
+
 ## 5. Estructura del proyecto
 ```
 techinalTestFractal/
@@ -105,10 +129,12 @@ techinalTestFractal/
 - Restricciones para órdenes completadas
 
 
-## 7. Opcional - SQL genérico
--- Schema para PostgreSQL/MySQL compatible
+## 7. Schema de base de datos (SQL genérico)
 
-```bash
+Si prefieres crear la base de datos manualmente o usar otro ORM, aquí tienes el schema SQL compatible con PostgreSQL/MySQL:
+
+```sql
+-- Tabla de productos
 CREATE TABLE Product (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -117,6 +143,7 @@ CREATE TABLE Product (
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Tabla de órdenes
 CREATE TABLE "Order" (
     id SERIAL PRIMARY KEY,
     orderNumber VARCHAR(255) NOT NULL UNIQUE,
@@ -127,6 +154,7 @@ CREATE TABLE "Order" (
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Tabla de relación productos-órdenes
 CREATE TABLE OrderProduct (
     id SERIAL PRIMARY KEY,
     orderId INTEGER NOT NULL,
@@ -139,8 +167,10 @@ CREATE TABLE OrderProduct (
     FOREIGN KEY (productId) REFERENCES Product(id) ON DELETE RESTRICT
 );
 
--- Índices para mejorar performance
+-- Índices para optimizar consultas
 CREATE INDEX idx_order_status ON "Order"(status);
 CREATE INDEX idx_orderproduct_order ON OrderProduct(orderId);
 CREATE INDEX idx_orderproduct_product ON OrderProduct(productId);
 ```
+
+> **Nota**: Este proyecto usa Prisma ORM, por lo que las migraciones se manejan automáticamente con `npx prisma migrate dev`. El SQL anterior es solo referencia para otros casos de uso.
