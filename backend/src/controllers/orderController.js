@@ -2,7 +2,7 @@ import {
     createOrderSchema,
     updateOrderSchema,
     orderIdSchema
-} from '../schemas/orderSchema.js';
+} from '../schemas/ordenSchema.js';
 
 export class OrderController {
     constructor({ orderModel }) {

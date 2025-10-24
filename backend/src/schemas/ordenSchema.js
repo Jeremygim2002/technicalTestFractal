@@ -1,3 +1,4 @@
+import { z } from 'zod';
 export const orderProductSchema = z.object({
     productId: z.number().int().positive(),
     quantity: z.number().int().positive('La cantidad debe ser mayor a 0'),
