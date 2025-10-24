@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js",
-    "build": "npx prisma generate && npx prisma migrate deploy",
+    "start": "npx prisma migrate deploy && node src/server.js",
+    "build": "npx prisma generate",
     "test": "vitest",
     "test:watch": "vitest --watch"
   },
